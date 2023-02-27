@@ -4,6 +4,7 @@ import { z } from 'zod';
 import dayjs from 'dayjs';
 
 export async function appRoutes(app: FastifyInstance) {
+   
    app.post('/habits', async (request) => {
       const createHabitBody = z.object({
          title: z.string(),
@@ -60,9 +61,10 @@ export async function appRoutes(app: FastifyInstance) {
          },
       });
 
-      const completedHabits = day?.dayHabits.map((dayHabit) => {
-         return dayHabit.habit_id;
-      }) ?? [];
+      const completedHabits =
+         day?.dayHabits.map((dayHabit) => {
+            return dayHabit.habit_id;
+         }) ?? [];
 
       return {
          possibleHabits,
